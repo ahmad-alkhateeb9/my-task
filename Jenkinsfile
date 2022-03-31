@@ -7,6 +7,11 @@ pipeline {
                 echo 'Hello world!' 
                 ls
             }
+        }        
+        stage('Stage 1') {
+            steps {
+               sh 'ls'
+            }
         }
     }
 }
