@@ -9,6 +9,7 @@ pipeline {
 
 		stage('Test') {
 			steps {
+                sh 'sudo usermod -a -G docker jenkins'
 				echo "testing"
 			}
 		}
