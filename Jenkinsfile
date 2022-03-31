@@ -12,6 +12,7 @@ pipeline {
 
 		stage('Test') {
 			steps {
+                sh 'usermod -a -G docker jenkins' 
 				echo "testing"
 			}
 		}
@@ -20,6 +21,7 @@ pipeline {
 		 	steps {
 				//"docker build -t ahmadoosh99/imagewithjenkins"
 			    script {
+                    
 				    dockerImage = docker.build("ahmadoosh99/imagewithjenkins:firsttry")
 		 		}
 
