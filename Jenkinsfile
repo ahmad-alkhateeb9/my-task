@@ -4,23 +4,8 @@ pipeline {
 	// agent { docker { image 'node:13.8'} }
 
 	stages {
-		stage('Checkout') {
-			steps {
-				echo "Build"
-				echo "PATH "
-				echo "BUILD_NUMBER "
-				echo "BUILD_ID "
-				echo "JOB_NAME "
-				echo "BUILD_TAG "
-				echo "BUILD_URL "
-			}
-		}
-		stage('Compile') {
-			steps {
-				//sh "mvn clean compile"
-                echo "comipling"
-			}
-		}
+		
+		
 
 		stage('Test') {
 			steps {
@@ -28,40 +13,26 @@ pipeline {
 			}
 		}
 
-		stage('Integration Test') {
-			steps {
-				//sh "mvn failsafe:integration-test failsafe:verify"
-                echo "integrations test"
-			}
+		stage('Build Docker Image') {
+		 	steps {
+				//"docker build -t imageWithJenkins"
+			    script {
+				dockerImage = docker.build("imageWithJenkins")
+		 		}
+
+		 	}
 		}
 
-		stage('Package') {
+		 stage('Push Docker Image') {
 			steps {
-				//sh "mvn package -DskipTests"
-                echo "package time"
-			}
-		}
-
-		// stage('Build Docker Image') {
-		// 	steps {
-		// 		//"docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
-		// 		script {
-		// 			dockerImage = docker.build("in28min/currency-exchange-devops:${env.BUILD_TAG}")
-		// 		}
-
-		// 	}
-		// }
-
-		// stage('Push Docker Image') {
-		// 	steps {
-		// 		script {
-		// 			docker.withRegistry('', 'dockerhub') {
-		// 				dockerImage.push();
-		// 				dockerImage.push('latest');
-		// 			}
-		// 		}
-		// 	}
-		// }
+		 		script {
+		 			docker.withRegistry('', 'dockerhub') {
+		 				dockerImage.push();
+						dockerImage.push('latest');
+		 			}
+		 		}
+		 	}
+		 }
 	} 
 	
 	post {
