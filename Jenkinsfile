@@ -1,7 +1,10 @@
 pipeline {
-	agent any
-	// agent { docker { image 'maven:3.6.3'} }
-	// agent { docker { image 'node:13.8'} }
+	agent {
+	    dockerfile {
+            filename 'Dockerfile'
+            dir ''
+        }
+    }
 
 	stages {
 		
@@ -9,7 +12,6 @@ pipeline {
 
 		stage('Test') {
 			steps {
-                sh 'sudo usermod -a -G docker jenkins'
 				echo "testing"
 			}
 		}
@@ -18,7 +20,7 @@ pipeline {
 		 	steps {
 				//"docker build -t ahmadoosh99/imagewithjenkins"
 			    script {
-				dockerImage = docker.build("ahmadoosh99/imagewithjenkins:firsttry")
+				    dockerImage = docker.build("ahmadoosh99/imagewithjenkins:firsttry")
 		 		}
 
 		 	}
