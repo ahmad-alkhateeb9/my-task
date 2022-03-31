@@ -7,7 +7,7 @@ pipeline {
                 echo 'Hello world!' 
                 ls
             }
-                
+        } 
         stage('Stage 2') {
             steps {
                sh 'ls'
@@ -15,3 +15,4 @@ pipeline {
         }
     }
 }
+
