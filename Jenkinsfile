@@ -7,8 +7,8 @@ pipeline {
                 echo 'Hello world!' 
                 ls
             }
-        }        
-        stage('Stage 1') {
+                
+        stage('Stage 2') {
             steps {
                sh 'ls'
             }
