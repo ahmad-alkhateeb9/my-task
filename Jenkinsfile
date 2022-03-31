@@ -15,9 +15,9 @@ pipeline {
 
 		stage('Build Docker Image') {
 		 	steps {
-				//"docker build -t imageWithJenkins"
+				//"docker build -t ahmadoosh99/imagewithjenkins"
 			    script {
-				dockerImage = docker.build("imageWithJenkins")
+				dockerImage = docker.build("ahmadoosh99/imagewithjenkins:firsttry")
 		 		}
 
 		 	}
