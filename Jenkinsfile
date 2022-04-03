@@ -17,13 +17,9 @@ pipeline {
             steps {
                sh 'docker build -t ahmad .'
             }
-<<<<<<< HEAD
             steps{
                 sh 'ls ./images'
             }
-=======
-            
->>>>>>> c23882abda9905a18386e6a5be634306cbb90f9b
         }
         
         
