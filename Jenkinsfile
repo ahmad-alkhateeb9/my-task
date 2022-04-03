@@ -9,13 +9,15 @@ pipeline {
         } 
         stage('Stage 3') {
             steps{
-                sh 'ls ./images'
+                sh 'ls ./myhtml/images'
+                sh 'pwd'
             }
             
         }
         stage('Stage 2') {
             steps {
                sh 'docker build -t ahmad .'
+                sh 'ls'
             }
         }
         
