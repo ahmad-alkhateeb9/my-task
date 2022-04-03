@@ -7,14 +7,26 @@ pipeline {
                 echo 'Hello world!' 
             }
         } 
+        stage('Stage 3') {
+            steps{
+                sh 'ls ./images'
+            }
+            
+        }
         stage('Stage 2') {
             steps {
                sh 'docker build -t ahmad .'
             }
+<<<<<<< HEAD
             steps{
                 sh 'ls ./images'
             }
+=======
+            
+>>>>>>> c23882abda9905a18386e6a5be634306cbb90f9b
         }
+        
+        
     }
 }
 
